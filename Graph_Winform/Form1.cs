@@ -15,6 +15,7 @@ namespace Graph_Winform
         public Form1()
         {
             InitializeComponent();
+##
         }
     }
 }
