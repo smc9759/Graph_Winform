@@ -84,6 +84,7 @@
             this.chart5 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.kryptonPanel2 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
+            this.dataFetchTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Group_GraphSettings_Arduino)).BeginInit();
             this.Group_GraphSettings_Arduino.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Group_TabMenu_GraphSetting_Arduino)).BeginInit();
@@ -569,6 +570,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart5;
         private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel2;
         private System.Windows.Forms.Timer updateTimer;
+        private System.Windows.Forms.Timer dataFetchTimer;
     }
 }
 

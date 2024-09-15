@@ -1,4 +1,5 @@
-﻿using ComponentFactory.Krypton.Toolkit;
+﻿#define SIMULATION
+using ComponentFactory.Krypton.Toolkit;
 using Graph_Winform.Resources;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,16 @@ namespace Graph_Winform
 {
     public partial class Form1 : KryptonForm
     {
+        private string lastFetchedDataFile1 = string.Empty;
+        private string lastFetchedDataFile2 = string.Empty;
         public Form1()
         {
             InitializeComponent();
+            InitializeDataFetchTimer(); // 타이머 초기화 및 시작
 
+            InitializeCharts_GraphTap();
+            InitializeTimer_GraphTap(); // 타이머 초기화
+            LoadInitialData();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -57,9 +64,7 @@ namespace Graph_Winform
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////
-        /// TAP Graph 관련 표현이다.
-        /// 
+        #region Graph
         private void InitializeCharts_GraphTap()
         {
             InitializeChartEach_GraphTap(chart2, "TemperatureSeries");
@@ -75,6 +80,32 @@ namespace Graph_Winform
             chart.ChartAreas.Clear();
             chart.Legends.Clear(); // 기존 범례를 삭제 후 새로운 범례를 설정
 
+            // 차트 영역 추가 및 배경색 설정
+            ChartArea chartArea = new ChartArea("MainArea")
+            {
+                BackColor = Color.Gray // 차트 영역의 배경색 설정
+            };
+            chart.ChartAreas.Add(chartArea);
+
+            // 차트 전체의 배경색 설정
+            chart.BackColor = Color.Gray; // 차트 자체의 배경색 설정
+
+            // X축 및 Y축 설정 (라인과 글자 색상 하얀색으로 설정)
+            chartArea.AxisX.LabelStyle.ForeColor = Color.White; // X축 글자 색상 설정
+            chartArea.AxisY.LabelStyle.ForeColor = Color.White; // Y축 글자 색상 설정
+            chartArea.AxisX.LineColor = Color.White;            // X축 라인 색상 설정
+            chartArea.AxisY.LineColor = Color.White;            // Y축 라인 색상 설정
+            chartArea.AxisX.MajorGrid.LineColor = Color.White;  // X축 격자선 색상 설정
+            chartArea.AxisY.MajorGrid.LineColor = Color.White;  // Y축 격자선 색상 설정
+
+            // 범례 추가
+            Legend legend = new Legend("MainLegend")
+            {
+                Docking = Docking.Top,            // 범례의 위치를 상단에 설정
+                BackColor = Color.Transparent,    // 범례의 배경을 투명하게 설정
+                ForeColor = Color.White           // 범례 텍스트 색상을 흰색으로 설정
+            };
+            chart.Legends.Add(legend);
 
         }
 
@@ -85,9 +116,6 @@ namespace Graph_Winform
             updateTimer.Tick += async (sender, e) => await UpdateDataAsync(); // Tick 이벤트에 이벤트 핸들러 추가
             updateTimer.Start(); // 타이머 시작
         }
-
-
-
         private async Task UpdateDataAsync()
         {
             await LoadDataFromFileAsync_GraphTap();
@@ -285,6 +313,178 @@ namespace Graph_Winform
             chart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Hours;
             chart.ChartAreas[0].AxisX.Interval = 6; // 6시간 간격
         }
+#endregion
+        #region Arduino Sensor Data
+        private async Task FetchDataFromBothFilesAsync()
+        {
+            try
+            {
+                // 첫 번째 파일 경로
+                string dynamicDbFilePath1 = GetDynamicDbFilePath("B_001");
+                // 첫 번째 파일이 존재하는지 확인
+                if (!File.Exists(dynamicDbFilePath1))
+                {
+                }
+                else
+                {
+                    // 첫 번째 파일에서 데이터 읽기
+                    var result1 = await FetchDataFromFileAsync(dynamicDbFilePath1, lastFetchedDataFile1);
+                    lastFetchedDataFile1 = result1.Item1;
+
+                    // 데이터베이스 쿼리가 성공한 경우 업데이트 시간 갱신
+                    //if (result1.Item3)
+                    //{
+                    //    lastUpdateTimeFile1 = DateTime.Now;
+                    //}
+
+                    //// 데이터가 30초 동안 업데이트되지 않았을 경우 라벨 업데이트
+                    //if ((DateTime.Now - lastUpdateTimeFile1).TotalSeconds >= 30)
+                    //{
+                    //    //SetDisconnectedState(Model2_NAME1_ST, Model2_TEM1_ST, Model2_HUM1_ST, Model2_PRE1_ST, Model2_VOC1_ST, Model2_TYPE1_ST);
+                    //}
+                }
+
+                // 두 번째 파일 경로
+                string dynamicDbFilePath2 = GetDynamicDbFilePath("B_002");
+                // 두 번째 파일이 존재하는지 확인
+                if (!File.Exists(dynamicDbFilePath2))
+                {
+                }
+                else
+                {
+                    // 두 번째 파일에서 데이터 읽기
+                    var result2 = await FetchDataFromFileAsync(dynamicDbFilePath2, lastFetchedDataFile2);
+                    lastFetchedDataFile2 = result2.Item1;
+
+                    // 데이터베이스 쿼리가 성공한 경우 업데이트 시간 갱신
+                    //if (result2.Item3)
+                    //{
+                    //    lastUpdateTimeFile2 = DateTime.Now;
+                    //}
+
+                    //// 데이터가 30초 동안 업데이트되지 않았을 경우 라벨 업데이트
+                    //if ((DateTime.Now - lastUpdateTimeFile2).TotalSeconds >= 30)
+                    //{
+                    //    //SetDisconnectedState(Model2_NAME2_ST, Model2_TEM2_ST, Model2_HUM2_ST, Model2_PRE2_ST, Model2_VOC2_ST, Model2_TYPE2_ST);
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                LogMessageAsync($"Error fetching data from database: {ex}");
+                //MessageBox.Show($"Error fetching data from database: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async Task<(string, DateTime, bool)> FetchDataFromFileAsync(string dbFilePath, string lastFetchedData)
+        {
+            DateTime lastUpdateTime = DateTime.MinValue;
+            bool isSuccess = false; // 데이터 읽기 성공 여부
+
+            try
+            {
+                string connectionString = $"Data Source={dbFilePath};Version=3;";
+
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+
+                    // 데이터 조회 쿼리 (마지막 행의 각 컬럼을 가져옴)
+                    //string query = "SELECT Device_name, Temperature, Humidity, Pressure, Gas, Type FROM data_table ORDER BY Time DESC LIMIT 1";
+                    string query = "SELECT Device_name, Temperature, Humidity, Pressure, Gas, Type, Time FROM data_table ORDER BY Time DESC LIMIT 1";
+
+
+                    using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                    {
+                        using (SQLiteDataReader reader = (SQLiteDataReader)await command.ExecuteReaderAsync())
+                        {
+                            if (await reader.ReadAsync())
+                            {
+                                // 각 컬럼 데이터를 읽어옴
+                                var deviceName = reader["Device_name"].ToString();
+                                var temperature = reader["Temperature"].ToString();
+                                var humidity = reader["Humidity"].ToString();
+                                var pressure = reader["Pressure"].ToString();
+                                var gas = reader["Gas"].ToString();
+                                var type = reader["Type"].ToString();
+                                //var B_TimeData = reader["Time"].ToString() ;
+
+                                // Time 데이터를 DateTime으로 변환 (형식: "yyyy-MM-dd_HH:mm:ss")
+                                string timeString = reader["Time"].ToString(); // Time 컬럼을 문자열로 가져옴
+                                DateTime dataTime = DateTime.ParseExact(timeString, "yyyy-MM-dd_HH:mm:ss", null); // Time을 DateTime으로 변환
+
+                                // 새로운 데이터 행을 하나의 문자열로 결합하여 비교용 데이터 생성
+                                string currentFetchedData = $"{deviceName}{temperature}{humidity}{pressure}{gas}{type}{timeString}";
+
+
+                                // 새로운 데이터 행을 하나의 문자열로 결합하여 비교용 데이터 생성
+                                //string currentFetchedData = $"{deviceName}{temperature}{humidity}{pressure}{gas}{type}{dataTime}";
+
+                                // 이전 데이터와 현재 데이터를 비교
+                                if (currentFetchedData != lastFetchedData)
+                                {
+                                    // 새로운 데이터로 업데이트
+                                    lastFetchedData = currentFetchedData;
+                                    lastUpdateTime = DateTime.Now; // 마지막 업데이트 시간 갱신
+                                    isSuccess = true; // 데이터가 성공적으로 읽혔고 업데이트됨
+
+                                }
+                                else
+                                {
+                                    // 데이터는 성공적으로 읽혔으나 값이 동일함
+                                    isSuccess = true;
+
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogMessageAsync($"Error fetching data from {dbFilePath}: {ex}");
+                //MessageBox.Show($"Error fetching data from {dbFilePath}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return (lastFetchedData, lastUpdateTime, isSuccess); // 최종적으로 업데이트된 lastFetchedData, lastUpdateTime, isSuccess 반환
+        }
+
+        private void SetDisconnectedState(params Label[] labels)
+        {
+            // "Disconnected" 상태 설정
+            labels[5].Text = "Disconnected";
+            for (int i = 0; i < labels.Length; i++)
+            {
+                if (i != 5) // labelType의 index는 5이므로 나머지 라벨에 대해서만 "-"
+                    labels[i].Text = "-";
+            }
+        }
+
+        private string GetDynamicDbFilePath(string suffix)
+        {
+            // 현재 시간 가져오기
+            DateTime now = DateTime.Now;
+            string year = now.Year.ToString();
+            string month = now.ToString("MM"); // 두 자리 월 형식
+            string day = now.ToString("dd");   // 두 자리 일 형식
+
+            // 동적 경로 생성
+            string folderPath = Path.Combine(Variable.baseFolderPath, $"B_{year}", $"B_{year}{month}", $"B_{year}{month}{day}");
+            string dbFileName = $"SVMU_{year}{month}{day}_{suffix}.db"; // 실제 사용 중인 DB 파일 이름으로 수정
+
+            // 최종 데이터베이스 파일 경로
+            string dynamicDbFilePath = Path.Combine(folderPath, dbFileName);
+
+            return dynamicDbFilePath;
+        }
+        private void InitializeDataFetchTimer()
+        {
+            dataFetchTimer.Interval = 1000; // 1초마다 실행
+            dataFetchTimer.Tick += async (sender, e) => await FetchDataFromBothFilesAsync(); // 비동기 데이터 읽기
+            dataFetchTimer.Start();
+        }
+        #endregion
     }
 }
 
