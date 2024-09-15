@@ -49,7 +49,14 @@
             this.Text_Temperature_Tab = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.Text_Humidity_Tab = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.Text_Pressure_Tab = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonNumericUpDown1 = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
+            this.n_Input_Temperature_UpperLimit = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
+            this.n_Input_Temperature_LowerLimit = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
+            this.n_Input_Humidity_UpperLimit = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
+            this.n_Input_Humidity_LowerLimit = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
+            this.n_Input_Pressure_UpperLimit = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
+            this.n_Input_Pressure_LowerLimit = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
+            this.n_Input_Air_UpperLimit = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
+            this.n_Input_Air_LowerLimit = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.Group_GraphSettings_Arduino)).BeginInit();
             this.Group_GraphSettings_Arduino.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Group_TabMenu_GraphSetting_Arduino)).BeginInit();
@@ -93,7 +100,7 @@
             this.Tab_GraphSetting_Humid_Arduino,
             this.Tab_GraphSetting_Press_Arduino,
             this.Tab_GraphSetting_Air_Arduino});
-            this.Group_TabMenu_GraphSetting_Arduino.SelectedIndex = 0;
+            this.Group_TabMenu_GraphSetting_Arduino.SelectedIndex = 3;
             this.Group_TabMenu_GraphSetting_Arduino.Size = new System.Drawing.Size(345, 312);
             this.Group_TabMenu_GraphSetting_Arduino.TabIndex = 0;
             this.Group_TabMenu_GraphSetting_Arduino.Text = "kryptonDockableNavigator1";
@@ -101,7 +108,8 @@
             // Tab_GraphSetting_Temp_Arduino
             // 
             this.Tab_GraphSetting_Temp_Arduino.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
-            this.Tab_GraphSetting_Temp_Arduino.Controls.Add(this.kryptonNumericUpDown1);
+            this.Tab_GraphSetting_Temp_Arduino.Controls.Add(this.n_Input_Temperature_LowerLimit);
+            this.Tab_GraphSetting_Temp_Arduino.Controls.Add(this.n_Input_Temperature_UpperLimit);
             this.Tab_GraphSetting_Temp_Arduino.Controls.Add(this.Text_Temperature_Tab);
             this.Tab_GraphSetting_Temp_Arduino.Controls.Add(this.Btn_Temperature_LowerLimit);
             this.Tab_GraphSetting_Temp_Arduino.Controls.Add(this.Btn_Temperature_UpperLimit);
@@ -117,6 +125,8 @@
             // Tab_GraphSetting_Humid_Arduino
             // 
             this.Tab_GraphSetting_Humid_Arduino.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
+            this.Tab_GraphSetting_Humid_Arduino.Controls.Add(this.n_Input_Humidity_LowerLimit);
+            this.Tab_GraphSetting_Humid_Arduino.Controls.Add(this.n_Input_Humidity_UpperLimit);
             this.Tab_GraphSetting_Humid_Arduino.Controls.Add(this.Text_Humidity_Tab);
             this.Tab_GraphSetting_Humid_Arduino.Controls.Add(this.Btn_Humidity_LowerLimit);
             this.Tab_GraphSetting_Humid_Arduino.Controls.Add(this.Btn_Humidity_UpperLimit);
@@ -132,6 +142,8 @@
             // Tab_GraphSetting_Press_Arduino
             // 
             this.Tab_GraphSetting_Press_Arduino.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
+            this.Tab_GraphSetting_Press_Arduino.Controls.Add(this.n_Input_Pressure_LowerLimit);
+            this.Tab_GraphSetting_Press_Arduino.Controls.Add(this.n_Input_Pressure_UpperLimit);
             this.Tab_GraphSetting_Press_Arduino.Controls.Add(this.Text_Pressure_Tab);
             this.Tab_GraphSetting_Press_Arduino.Controls.Add(this.Btn_Pressure_LowerLimit);
             this.Tab_GraphSetting_Press_Arduino.Controls.Add(this.Btn_Pressure_UpperLimit);
@@ -147,6 +159,8 @@
             // Tab_GraphSetting_Air_Arduino
             // 
             this.Tab_GraphSetting_Air_Arduino.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
+            this.Tab_GraphSetting_Air_Arduino.Controls.Add(this.n_Input_Air_LowerLimit);
+            this.Tab_GraphSetting_Air_Arduino.Controls.Add(this.n_Input_Air_UpperLimit);
             this.Tab_GraphSetting_Air_Arduino.Controls.Add(this.Text_Air_Tab);
             this.Tab_GraphSetting_Air_Arduino.Controls.Add(this.Btn_Air_LowerLimit);
             this.Tab_GraphSetting_Air_Arduino.Controls.Add(this.Btn_Air_UpperLimit);
@@ -255,12 +269,61 @@
             this.Text_Pressure_Tab.TabIndex = 2;
             this.Text_Pressure_Tab.Values.Text = "압력";
             // 
-            // kryptonNumericUpDown1
+            // n_Input_Temperature_UpperLimit
             // 
-            this.kryptonNumericUpDown1.Location = new System.Drawing.Point(131, 76);
-            this.kryptonNumericUpDown1.Name = "kryptonNumericUpDown1";
-            this.kryptonNumericUpDown1.Size = new System.Drawing.Size(120, 22);
-            this.kryptonNumericUpDown1.TabIndex = 3;
+            this.n_Input_Temperature_UpperLimit.Location = new System.Drawing.Point(131, 76);
+            this.n_Input_Temperature_UpperLimit.Name = "n_Input_Temperature_UpperLimit";
+            this.n_Input_Temperature_UpperLimit.Size = new System.Drawing.Size(57, 22);
+            this.n_Input_Temperature_UpperLimit.TabIndex = 3;
+            // 
+            // n_Input_Temperature_LowerLimit
+            // 
+            this.n_Input_Temperature_LowerLimit.Location = new System.Drawing.Point(131, 127);
+            this.n_Input_Temperature_LowerLimit.Name = "n_Input_Temperature_LowerLimit";
+            this.n_Input_Temperature_LowerLimit.Size = new System.Drawing.Size(57, 22);
+            this.n_Input_Temperature_LowerLimit.TabIndex = 4;
+            // 
+            // n_Input_Humidity_UpperLimit
+            // 
+            this.n_Input_Humidity_UpperLimit.Location = new System.Drawing.Point(131, 76);
+            this.n_Input_Humidity_UpperLimit.Name = "n_Input_Humidity_UpperLimit";
+            this.n_Input_Humidity_UpperLimit.Size = new System.Drawing.Size(120, 22);
+            this.n_Input_Humidity_UpperLimit.TabIndex = 3;
+            // 
+            // n_Input_Humidity_LowerLimit
+            // 
+            this.n_Input_Humidity_LowerLimit.Location = new System.Drawing.Point(131, 127);
+            this.n_Input_Humidity_LowerLimit.Name = "n_Input_Humidity_LowerLimit";
+            this.n_Input_Humidity_LowerLimit.Size = new System.Drawing.Size(120, 22);
+            this.n_Input_Humidity_LowerLimit.TabIndex = 4;
+            // 
+            // n_Input_Pressure_UpperLimit
+            // 
+            this.n_Input_Pressure_UpperLimit.Location = new System.Drawing.Point(131, 76);
+            this.n_Input_Pressure_UpperLimit.Name = "n_Input_Pressure_UpperLimit";
+            this.n_Input_Pressure_UpperLimit.Size = new System.Drawing.Size(120, 22);
+            this.n_Input_Pressure_UpperLimit.TabIndex = 3;
+            // 
+            // n_Input_Pressure_LowerLimit
+            // 
+            this.n_Input_Pressure_LowerLimit.Location = new System.Drawing.Point(131, 127);
+            this.n_Input_Pressure_LowerLimit.Name = "n_Input_Pressure_LowerLimit";
+            this.n_Input_Pressure_LowerLimit.Size = new System.Drawing.Size(120, 22);
+            this.n_Input_Pressure_LowerLimit.TabIndex = 4;
+            // 
+            // n_Input_Air_UpperLimit
+            // 
+            this.n_Input_Air_UpperLimit.Location = new System.Drawing.Point(131, 76);
+            this.n_Input_Air_UpperLimit.Name = "n_Input_Air_UpperLimit";
+            this.n_Input_Air_UpperLimit.Size = new System.Drawing.Size(120, 22);
+            this.n_Input_Air_UpperLimit.TabIndex = 3;
+            // 
+            // n_Input_Air_LowerLimit
+            // 
+            this.n_Input_Air_LowerLimit.Location = new System.Drawing.Point(131, 127);
+            this.n_Input_Air_LowerLimit.Name = "n_Input_Air_LowerLimit";
+            this.n_Input_Air_LowerLimit.Size = new System.Drawing.Size(120, 22);
+            this.n_Input_Air_LowerLimit.TabIndex = 4;
             // 
             // Form1
             // 
@@ -312,7 +375,14 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel Text_Temperature_Tab;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel Text_Humidity_Tab;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel Text_Pressure_Tab;
-        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown kryptonNumericUpDown1;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown n_Input_Temperature_UpperLimit;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown n_Input_Temperature_LowerLimit;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown n_Input_Humidity_LowerLimit;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown n_Input_Humidity_UpperLimit;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown n_Input_Pressure_LowerLimit;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown n_Input_Pressure_UpperLimit;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown n_Input_Air_LowerLimit;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown n_Input_Air_UpperLimit;
     }
 }
 
