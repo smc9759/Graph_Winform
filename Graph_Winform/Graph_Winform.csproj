@@ -97,5 +97,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\air.256x210.png" />
+    <Content Include="Resources\humidity.199x256.png" />
+    <Content Include="Resources\License.txt" />
+    <Content Include="Resources\lower-limit.png" />
+    <Content Include="Resources\pressure-low.126x256.png" />
+    <Content Include="Resources\pressure.256x256.png" />
+    <Content Include="Resources\temperature-max.256x256.png" />
+    <Content Include="Resources\upper-limit.png" />
+    <Content Include="Resources\wind.256x224.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
