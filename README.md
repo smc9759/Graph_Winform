@@ -2,23 +2,28 @@
 
 ### C#, Winform
 
-## Library
+## Third-Party Libraries
 
-1. KryptonForm
+This project uses the following third-party libraries:
 
-    Krypton.Toolkit
+### KryptonForm
 
-    Krypton.Navigator
+- **License**: BSD-3 Clause
+- **Components**:
+  - `Krypton.Toolkit`
+  - `Krypton.Navigator`
+  - `Krypton.Workspace`
+  - `Krypton.Docking`
 
-    Krypton.Workspace
+### SQLite
 
-    Keypton.Docking
+- **License**: Apache 2.0
+- **Component**:
+  - `System.Data.Sqlite`
 
-2. SQLite
+> **Note**: All libraries are from NuGet and are the latest versions available.
 
-    System.Data.Sqlite
-
-**(All libraries from Nuget Package ( Latest Version))**
+For more details about the licenses, check the `LICENSE` file in this project.
 
 # Function
 
@@ -64,3 +69,5 @@ Answer: you might have downloaded source from internet in .zip format.
 4. Delete project
 5. Unzip
 6. Use new project
+
+
