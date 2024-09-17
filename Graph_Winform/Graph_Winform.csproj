@@ -114,6 +114,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\ComponentFactory.Krypton.Docking.dll" />
+    <Content Include="Resources\ComponentFactory.Krypton.Navigator.dll" />
+    <Content Include="Resources\ComponentFactory.Krypton.Toolkit.dll" />
+    <Content Include="Resources\ComponentFactory.Krypton.Workspace.dll" />
     <Content Include="Resources\Icons\air.256x210.png" />
     <Content Include="Resources\Icons\humidity.199x256.png" />
     <Content Include="Resources\License.txt" />
