@@ -4,19 +4,19 @@
 
 ## Library
 
-KryptonForm
+1. KryptonForm
 
     Krypton.Toolkit
 
-Krypton.Navigator
+    Krypton.Navigator
 
-Krypton.Workspace
+    Krypton.Workspace
 
-Keypton.Docking
+    Keypton.Docking
 
-SQLite
+2. SQLite
 
-System.Data.Sqlite
+    System.Data.Sqlite
 
 **(All libraries from Nuget Package ( Latest Version))**
 
