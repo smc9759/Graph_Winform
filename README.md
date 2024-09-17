@@ -48,13 +48,13 @@ For more details about the licenses, check the `LICENSE` file in this project.
 
 ### ‘TableLayoutPanel not found in Krypton.Toolkit’
 
-**Problem** : You are using an old version of the Toolkit DLL.
-**Solution** : Download the latest version from NuGet Package.
+**Problem** : You are using an old version of the Toolkit DLL.  
+**Solution** : Download the latest version from NuGet Package.  
 
 ### File cannot be processed because it is in a restricted or web-related zone
 
-**Problem** : The file cannot be processed because it is from the internet or has web-related settings.
-**Solution** :
+**Problem** : The file cannot be processed because it is from the internet or has web-related settings.  
+**Solution** :  
 1. Right-click the .zip file
 2. Select "Properties"
 3. Click "Unblock" at the bottom (if available)
