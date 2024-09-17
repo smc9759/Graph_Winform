@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--Created by exporting the settings of a KryptonPalette instance.-->
+<!--For more information about Krypton visit www.ComponentFactory.com-->
+<!--WARNING: Modifying this file may render it invalid for importing.-->
+<KryptonPalette Version="18" Generated="Tuesday, 17 September 2024, 23:52">
+  <Properties>
+    <ControlStyles>
+      <ControlClient>
+        <StateCommon>
+          <Back>
+            <Color1 Type="Color" Value="DarkGray" />
+            <Color2 Type="Color" Value="DimGray" />
+          </Back>
+        </StateCommon>
+      </ControlClient>
+    </ControlStyles>
+    <LabelStyles>
+      <LabelNormalControl>
+        <StateCommon>
+          <ShortText>
+            <Font Type="Font" Value="맑은 고딕, 20.25pt, style=Bold" />
+          </ShortText>
+        </StateCommon>
+      </LabelNormalControl>
+    </LabelStyles>
+    <Navigator>
+      <StateCommon>
+        <Bar>
+          <BarPaddingInside Type="Padding" Value="3, 3, 3, 3" />
+          <BarPaddingOutside Type="Padding" Value="1, 1, 1, 1" />
+        </Bar>
+      </StateCommon>
+    </Navigator>
+    <BasePaletteMode Type="PaletteMode" Value="Office 2010 - Black" />
+  </Properties>
+  <Images />
+</KryptonPalette>
