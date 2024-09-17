@@ -6,7 +6,7 @@
 
 KryptonForm
 
-Krypton.Toolkit
+    Krypton.Toolkit
 
 Krypton.Navigator
 
