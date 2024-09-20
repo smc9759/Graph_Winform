@@ -1,75 +1,78 @@
-# Project Overview
+# Language
 
-## Language and Framework
-
-- **Language**: C#
-- **Framework**: WinForms
+1. C#
+2. WinForms
 
 ## Third-Party Libraries
 
-This project uses these third-party libraries:
+This project uses the following third-party libraries:
 
 ### KryptonForm
 
 - **License**: BSD-3 Clause
 - **Components**:
-    - `Krypton.Toolkit`
-    - `Krypton.Workspace`
-    - `Krypton.Ribbon`
+    - Krypton.Toolkit
+    - Krypton.Workspace
+    - Krypton.Ribbon
 
 ### SQLite
 
 - **License**: Apache 2.0
 - **Component**:
-    - `System.Data.Sqlite`
+    - System.Data.Sqlite
 
-> Note: All libraries come from NuGet and are up to date.
+> Note: All libraries are from NuGet and are the latest versions available.
+> 
 
-For more details about the licenses, check the `LICENSE` file in the project.
+For more details about the licenses, check the LICENSE file in this project.
 
-## Features
+# Features
 
 1. **Real-Time Data Visualization**
-   - Works with Serial and WiFi connections.
-   - Supports up to 4 ports.
+    - Supports Serial and WiFi communication
+    - Up to 4 Ports
 2. **Graph Settings**
-   - Set upper and lower limits for data.
+    - Set Upper and Lower Limits
 3. **Dynamic Window Resizing**
-   - Automatically adjusts when the window size changes.
 4. **Change UI Theme**
-   - Easily switch the app’s theme.
-   - Go to: Form (Designer) > KryptonPalette > BasePalette > Select.
-   - Themes available: Office Black, Blue, Silver, Custom.
-   - **Custom Theme**: Can be edited in the Krypton Palette.
+    - Easily change the overall theme of the application
+    - Go to: Form (Designer) > KryptonPalette > BasePalette > Select
+    - Themes available: Office Black, Blue, Silver, Custom
+    - **Custom**: Editable in Krypton Palette
 
-**Default Window Size**: 1940 x 1080
+default window size : 1940 x 1080
 
-## Troubleshooting
+# Troubleshooting
 
-### Common Errors
+## Error Messages
 
-#### ‘TableLayoutPanel not found in Krypton.Toolkit’
+### ‘TableLayoutPanel not found in Krypton.Toolkit’
 
-**Problem**: You're using an old version of the Toolkit.
+**Problem** : You are using an old version of the Toolkit DLL.
 
-**Solution**: Update to the latest version from NuGet.
+**Solution** : Download the latest version from NuGet Package.
 
-#### File cannot be processed because it is in a restricted or web-related zone
+### File cannot be processed because it is in a restricted or web-related zone
 
-**Problem**: The file is blocked because it came from the internet.
+**Problem** : The file cannot be processed because it is from the internet or has web-related settings.
 
-**Solution**:
-1. Right-click the `.zip` file.
-2. Select "Properties".
-3. Click "Unblock" (if you see this option).
-4. Delete the project folder.
-5. Unzip the file again.
-6. Open the new project.
+**Solution** :
 
-#### ‘Form1.cs[Designer] not showing’
+1. Right-click the .zip file
+2. Select "Properties"
+3. Click "Unblock" at the bottom (if available)
+4. Delete the project folder
+5. Unzip the file again
+6. Open the new project
 
-**Problem**: The Designer doesn’t appear.
+### ‘Form1.cs[Designer] not showing’
 
-**Solution**:
-- If you have the latest version of `Krypton.Toolkit`, build the solution once.
-- If that doesn’t work, close the project and reopen it.
+**Problem** : Designer does not show up
+
+**Solution** : If you already downloaded Latest Krypton.Toolkit from Nuget package,
+
+just Build Solution Once. 
+
+If this does not solve ths issue, 
+
+close the project and Relaunch
