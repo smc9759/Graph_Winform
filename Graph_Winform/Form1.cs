@@ -64,6 +64,7 @@ namespace Graph_Winform
             }
         }
 
+
         #region Graph
         private void InitializeCharts_GraphTap()
         {
@@ -484,6 +485,62 @@ namespace Graph_Winform
             dataFetchTimer.Tick += async (sender, e) => await FetchDataFromBothFilesAsync(); // 비동기 데이터 읽기
             dataFetchTimer.Start();
         }
+        #endregion
+
+        #region GraphSetting
+
+        private void UpdateChart(Chart chart, int yValue, string seriesName, Color color)
+        {
+            // Remove existing series with the specified name
+            var existingSeries = chart.Series.FindByName(seriesName);
+            if (existingSeries != null)
+            {
+                chart.Series.Remove(existingSeries);
+            }
+
+            // Create or get the series for the line
+            Series series = new Series(seriesName)
+            {
+                ChartType = SeriesChartType.Line, // Ensure line chart type
+                Color = color,
+                BorderWidth = 2 // Set width to make line visible
+            };
+            chart.Series.Add(series);
+
+            // Get the chart area
+            var chartArea = chart.ChartAreas[0];
+            if (chartArea == null)
+            {
+                return;
+            }
+
+            // Get the minimum and maximum DateTime values of the X-axis
+            DateTime xMin = DateTime.Now.AddHours(-48);
+            DateTime xMax = DateTime.Now;
+
+            // Clear existing points
+            series.Points.Clear();
+
+            // Add points to span the entire width of the chart
+            series.Points.AddXY(xMin, yValue);
+            series.Points.AddXY(xMax, yValue);
+        }
+
+        private void ChartButton(Chart chart, Krypton.Ribbon.KryptonRibbonGroupNumericUpDown input, string seriesName, Color color)
+        {
+            int n_Value = (int)input.Value;
+            UpdateChart(chart, n_Value, seriesName, color);
+        }
+
+        private void Btn_Temperature_UpperLimit_Click(object sender, EventArgs e) => ChartButton(chart2, n_Input_Temperature_UpperLimit, "MIN", Color.Red);
+        private void Btn_Temperature_LowerLimit_Click(object sender, EventArgs e) => ChartButton(chart2, n_Input_Temperature_LowerLimit, "MAX", Color.Blue);
+        private void Btn_Humidity_UpperLimit_Click(object sender, EventArgs e) => ChartButton(chart3, n_Input_Humidity_UpperLimit, "MIN", Color.Red);
+        private void Btn_Humidity_LowerLimit_Click(object sender, EventArgs e) => ChartButton(chart3, n_Input_Humidity_LowerLimit, "MAX", Color.Blue);
+        private void Btn_Pressure_UpperLimit_Click(object sender, EventArgs e) => ChartButton(chart4, n_Input_Pressure_UpperLimit, "MIN", Color.Red);
+        private void Btn_Pressure_LowerLimit_Click(object sender, EventArgs e) => ChartButton(chart4, n_Input_Pressure_LowerLimit, "MAX", Color.Blue);
+        private void Btn_Air_UpperLimit_Click(object sender, EventArgs e) => ChartButton(chart5, n_Input_Air_UpperLimit, "MIN", Color.Red);
+        private void Btn_Air_LowerLimit_Click(object sender, EventArgs e) => ChartButton(chart5, n_Input_Air_LowerLimit, "MAX", Color.Blue);
+
         #endregion
     }
 }
